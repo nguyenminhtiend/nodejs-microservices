@@ -1,14 +1,19 @@
-const { seedEmployee, seedDepartment } = require('./seed');
-const generateToken = require('../../../src/auth/service/generateToken');
+const { seedEmployee, seedDepartment } = require('../helper/seed');
+const generateToken = require('../../core/utils/getAccessToken');
 
-let accessToken = null;
-
-describe('## Employee APIs', () => {
-  beforeEach(async () => {
-    accessToken = await generateToken({ id: 1, username: 'test' });
-  });
+describe('## Employee APIs', async () => {
+  const accessToken = await generateToken();
 
   describe('# GET /user/employees', () => {
+    it('should return access denied', async () => {
+      const res = await chai
+        .request(app)
+        .get('/user/employees');
+
+      expect(res).to.have.status(401);
+      // expect(res.body.total).to.equal(2);
+    });
+
     it('should return all employees', async () => {
       await seedEmployee();
 

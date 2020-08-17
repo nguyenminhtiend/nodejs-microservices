@@ -9,4 +9,7 @@ module.exports = {
     expect: true,
     app: true,
   },
+  rules: {
+    'no-unused-expressions': 0,
+  },
 };
