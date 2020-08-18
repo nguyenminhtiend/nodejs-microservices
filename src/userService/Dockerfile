@@ -9,8 +9,8 @@ COPY package*.json ./
 
 RUN npm install --only=production
 
-COPY src/shared ./src/shared
-COPY src/user ./src/user
+COPY src/core ./src/core
+COPY src/userService ./src/userService
 
 ENV USER_PORT=3000
 ENV NODE_ENV=production
@@ -23,4 +23,4 @@ ENV USER_DB_DATABASE=microservices-user
 
 EXPOSE 3000
 
-CMD ["node", "src/core/startService.js", "User"]
+CMD ["node", "src/core/server/index.js", "UserService"]
