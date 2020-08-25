@@ -27,6 +27,7 @@ jobs:
           name: Getting Started
           command: |
             npm install
+            npm install -g sequelize-cli
             npm run db-department:migrate
             npm run test-department
 workflows:
