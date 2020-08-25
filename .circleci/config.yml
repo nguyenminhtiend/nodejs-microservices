@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+      - checkout
       - run:
           name: Getting Started
           command: |
