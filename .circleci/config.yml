@@ -27,6 +27,7 @@ jobs:
           name: Getting Started
           command: |
             npm install
+            npm run db-department:migrate
             npm run test-department
 workflows:
   setup:
