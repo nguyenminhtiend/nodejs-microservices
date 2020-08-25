@@ -6,7 +6,7 @@
   "scripts": {
     "dev-department": "NODE_ENV=development nodemon src/core/server/index.js DepartmentService",
     "test-department": "NODE_ENV=test SERVICE=DepartmentService mocha test/setup 'test/**/*.spec.js' --exit",
-    "db-department:migrate": "NODE_ENV=development sequelize --options-path ./src/department-service/config/sequelize.js db:migrate",
+    "db-department:migrate": "NODE_ENV=development node_modules/.bin/sequelize --options-path ./src/department-service/config/sequelize.js db:migrate",
     "docker-clear-dangling": "docker rmi $(docker images -f 'dangling=true' -q)",
     "docker-run-user": "docker run -p 3000:3000 department-service:latest",
     "docker-build-department": "docker build -f src/department-service/Dockerfile -t department-service:latest .",
@@ -67,6 +67,7 @@
     "mocha": "^8.1.1",
     "node-mocks-http": "^1.8.1",
     "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.2.0",
     "sinon": "^9.0.3"
   },
   "lint-staged": {
