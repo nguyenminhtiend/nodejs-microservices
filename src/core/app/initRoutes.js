@@ -3,7 +3,7 @@ const glob = require('glob');
 const express = require('express');
 
 module.exports = ({ app, folder, basePath }) => {
-  const files = glob.sync(`./src/${folder}/routes/**/**Router.js`);
+  const files = glob.sync(`./src/${folder}/routes/**/**-router.js`);
   const router = express.Router();
 
   files.forEach((filePath) => {

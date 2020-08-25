@@ -1,11 +1,3 @@
-const AppError = require('./AppError');
-const asyncRoute = require('./asyncRoute');
-const logger = require('./logger');
-const validator = require('./validator');
-
-module.exports = {
-  AppError,
-  asyncRoute,
-  logger,
-  validator,
-};
+exports.AppError = require('./AppError');
+exports.asyncRoute = require('./asyncRoute');
+exports.logger = require('./logger');

@@ -1,5 +1,2 @@
-const authentication = require('./authentication');
-
-module.exports = {
-  authentication,
-};
+exports.authentication = require('./authentication');
+exports.validator = require('./validator');

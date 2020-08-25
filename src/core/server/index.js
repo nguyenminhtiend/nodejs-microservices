@@ -8,14 +8,14 @@ const name = process.argv[2];
 const services = [
   {
     name: 'AuthService',
-    folder: 'authService',
+    folder: 'auth-service',
     port: 3001,
-    basePath: '/auth',
+    basePath: '/authentication',
   }, {
-    name: 'UserService',
-    folder: 'userService',
+    name: 'DepartmentService',
+    folder: 'department-service',
     port: 3000,
-    basePath: '/user',
+    basePath: '/department',
   },
 ];
 

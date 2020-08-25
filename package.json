@@ -4,17 +4,16 @@
   "description": "Nodejs boilerplate",
   "main": "src/index.js",
   "scripts": {
-    "dev-user": "NODE_ENV=development nodemon src/core/server/index.js UserService",
-    "start-user": "node src/core/server/index.js User",
-    "test-user": "NODE_ENV=test mocha tests/setup tests/core/**/*.spec.js --User --exit",
+    "dev-department": "NODE_ENV=development nodemon src/core/server/index.js DepartmentService",
+    "test-department": "NODE_ENV=test SERVICE=DepartmentService mocha test/setup 'test/**/*.spec.js' --exit",
     "db-user:migrate": "NODE_ENV=development sequelize --options-path ./src/user/config/sequelize.js db:migrate",
-    "docker-run-user": "docker run -p 3000:3000 user-service:latest",
-    "docker-build-user-service": "docker build -f src/userService/Dockerfile -t user-service:latest .",
+    "docker-clear-dangling": "docker rmi $(docker images -f 'dangling=true' -q)",
+    "docker-run-user": "docker run -p 3000:3000 department-service:latest",
+    "docker-build-department": "docker build -f src/department-service/Dockerfile -t department-service:latest .",
     "docker-push-user-service": "docker tag user-service:latest 621567429603.dkr.ecr.ap-southeast-1.amazonaws.com/user-service:latest && docker push 621567429603.dkr.ecr.ap-southeast-1.amazonaws.com/user-service:latest",
     "docker:deploy-user": "npm run docker-login; npm run docker-build-user-service; npm run docker-push-user-service",
     "docker-push-user": "docker push 621567429603.dkr.ecr.ap-southeast-1.amazonaws.com/user-service:latest",
-    "dev-auth": "NODE_ENV=development node src/core/server/index.js AuthService",
-    "start-auth": "node src/core/server/index.js Auth",
+    "dev-auth": "NODE_ENV=development nodemon src/core/server/index.js AuthService",
     "db-auth:migrate": "NODE_ENV=development sequelize --options-path ./src/authService/config/sequelize.js db:migrate",
     "lint": "eslint --fix '**/*.js'",
     "docker-login": "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 621567429603.dkr.ecr.ap-southeast-1.amazonaws.com",
@@ -25,7 +24,7 @@
     "tf-plan": "cd infras; terraform plan -var-file=development.tfvars",
     "tf-apply": "cd infras; terraform apply -var-file=development.tfvars -auto-approve",
     "tf-destroy": "cd infras; terraform destroy -var-file=development.tfvars -auto-approve",
-    "test": "mocha tests/setup tests/user/employee/sample.spec.js --User --exit"
+    "test": "mocha test/setup test/user/employee/sample.spec.js --User --exit"
   },
   "author": "Tien Nguyen",
   "repository": {
