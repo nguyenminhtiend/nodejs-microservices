@@ -1,19 +1,16 @@
 version: 2.1
 
 jobs:
-  getting-started:
+  test:
     docker:
       - image: circleci/node:latest
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ROOT_PASSWORD: rootpw
           MYSQL_DATABASE: test_db
           MYSQL_USER: user
-          MYSQL_PASSWORD: passw0rd
     steps:
       - checkout
       - run:
-          # Our primary container isn't MYSQL so run a sleep command until it's ready.
           name: Waiting for MySQL to be ready
           command: |
             for i in `seq 1 10`;
@@ -24,12 +21,18 @@ jobs:
             done
             echo Failed waiting for MySQL && exit 1
       - run:
-          name: Getting Started
+          name: Install dependencies
           command: |
             npm install
+      - run:
+          name: Run DB migration
+          command: |
             npm run db-department:migrate
+      - run:
+          name: Run integration testing
+          command: |
             npm run test-department
 workflows:
   setup:
     jobs:
-      - getting-started
+      - test
