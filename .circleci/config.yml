@@ -36,4 +36,7 @@ jobs:
 workflows:
   setup:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              only: master
