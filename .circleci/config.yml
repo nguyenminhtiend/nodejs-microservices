@@ -8,6 +8,7 @@ jobs:
         environment:
           MYSQL_DATABASE: test_db
           MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
     steps:
       - checkout
       - run:
