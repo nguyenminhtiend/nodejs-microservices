@@ -16,11 +16,16 @@ const db = {
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
   dialect: 'mysql',
+  engine: 'InnoDB',
+  dialectOptions: {
+    charset: 'utf8mb4',
+  },
+  logging: !!process.env.DB_LOGGING,
 };
 
-if (!process.env.DB_LOGGING) {
-  db.logging = false;
-}
+// if (!process.env.DB_LOGGING) {
+//   db.logging = !!process.env.DB_LOGGING;
+// }
 
 module.exports = {
   [NODE_ENV]: db,

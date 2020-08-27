@@ -18,6 +18,7 @@ resource "aws_ecs_task_definition" "task_definition" {
           "hostPort": ${var.services[count.index].port}
         }
       ],
+      "environment": ${jsonencode(var.services[count.index].environment)},
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
